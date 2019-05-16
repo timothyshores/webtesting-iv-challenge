@@ -8,9 +8,9 @@ describe('users-model', () => {
 
     describe('insert()', () => {
         it('should insert a single user', async () => {
-            let user = await Users.insert({ name: 'User 1' });
-            expect(user).toEqual({ id: 1, name: 'User 1' });
-            expect(users).toHaveLength(1);
+            let users = await Users.insert({ name: 'User 1' });
+            expect(users).toEqual({ id: 1, name: 'User 1' });
+            console.log('users', users);
         });
     });
 });
