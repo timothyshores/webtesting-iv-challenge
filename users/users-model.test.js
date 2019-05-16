@@ -24,10 +24,17 @@ describe('users-model', () => {
     describe('remove()', () => {
         it('should remove a single user', async () => {
             let user = await Users.insert({ name: 'User 1' });
-            user.remove(1);
-            expect(user).toBeFalsy();
-            expect(user).toBeNull();
-            expect(user).not.toEqual({ id: 1, name: 'User 1' });
+            let removedUser = await Users.remove(1);
+            expect(removedUser).toEqual(1);
+        });
+
+        it('should remove a two users', async () => {
+            await Users.insert({ name: 'User 1' });
+            await Users.insert({ name: 'User 2' });
+            let removedUser2 = await Users.remove(1);
+            expect(removedUser2).toEqual(1);
+            let removedUser1 = await Users.remove(0);
+            expect(removedUser1).toEqual(0);
         });
     });
 });

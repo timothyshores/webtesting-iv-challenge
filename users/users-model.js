@@ -10,9 +10,11 @@ async function insert(user) {
     return db('users')
         .where({ id })
         .first();
-}
+};
 
 
-function remove(id) {
-    return null;
-}
+async function remove(id) {
+    return db('users')
+        .where('id', id)
+        .del();
+};
