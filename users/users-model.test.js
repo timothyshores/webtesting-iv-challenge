@@ -20,4 +20,14 @@ describe('users-model', () => {
             expect(users).toEqual({ id: 2, name: 'User 2' });
         });
     });
+
+    describe('remove()', () => {
+        it('should remove a single user', async () => {
+            let user = await Users.insert({ name: 'User 1' });
+            user.remove(1);
+            expect(user).toBeFalsy();
+            expect(user).toBeNull();
+            expect(user).not.toEqual({ id: 1, name: 'User 1' });
+        });
+    });
 });
