@@ -8,9 +8,16 @@ describe('users-model', () => {
 
     describe('insert()', () => {
         it('should insert a single user', async () => {
+            let user = await Users.insert({ name: 'User 1' });
+            expect(user).toEqual({ id: 1, name: 'User 1' });
+        });
+
+        it('should insert a two users with unique ids and names', async () => {
             let users = await Users.insert({ name: 'User 1' });
             expect(users).toEqual({ id: 1, name: 'User 1' });
-            console.log('users', users);
+
+            users = await Users.insert({ name: 'User 2' });
+            expect(users).toEqual({ id: 2, name: 'User 2' });
         });
     });
 });
